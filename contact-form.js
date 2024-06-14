@@ -1,17 +1,15 @@
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
   
     var formData = new FormData(this);
-    var object = {};
-    formData.forEach((value, key) => { object[key] = value });
-    var json = JSON.stringify(object);
+    var queryString = new URLSearchParams();
   
-    fetch('https://hooks.zapier.com/hooks/catch/19161262/2oaxlqn/', { // replace 'your_webhook_url' with the actual webhook URL from Zapier
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: json
+    formData.forEach((value, key) => {
+      queryString.append(key, value);
+    });
+  
+    fetch('https://hooks.zapier.com/hooks/catch/19161262/2oaxlqn/' + queryString.toString(), { // replace 'your_webhook_url' with the actual webhook URL from Zapier
+      method: 'GET', // Zapier expects data in query string, use GET method
     })
     .then(response => {
       if (response.ok) {
@@ -24,7 +22,3 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
       alert('There was an error submitting the form.');
     });
   });
-
-
-
-  
