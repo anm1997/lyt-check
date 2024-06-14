@@ -125,8 +125,7 @@
             
               <div class="navbar-btn d-none d-sm-inline-block">
                 </a>
-                <a class="ud-main-btn ud-white-btn" href="https://tally.so/r/mYQPD6">
-                  Contact Sales
+
                 </a>
               </div>
             </nav>
@@ -546,61 +545,37 @@
                 </div>
                 <div class="ud-single-info">
                   <div class="ud-info-icon">
-                    <i class="lni lni-envelope"></i>
                   </div>
                   <div class="ud-info-meta">
-                    <h5>How Can We Help?</h5>
-                    <p>sales@lytcheck.com</p>
-
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-xl-4 col-lg-5">
-            <div
-              class="ud-contact-form-wrapper wow fadeInUp"
-              data-wow-delay=".2s"
-            >
+            <div class="ud-contact-form-wrapper wow fadeInUp" data-wow-delay=".2s">
               <h3 class="ud-contact-form-title">Send us a Message</h3>
-              <form class="ud-contact-form">
+              <form class="ud-contact-form" id="contactForm">
                 <div class="ud-form-group">
                   <label for="fullName">Full Name*</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Adam Gelius"
-                  />
+                  <input type="text" name="fullName" placeholder="Adam Gelius" required />
                 </div>
                 <div class="ud-form-group">
                   <label for="email">Email*</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="example@yourmail.com"
-                  />
+                  <input type="email" name="email" placeholder="example@yourmail.com" required />
                 </div>
                 <div class="ud-form-group">
                   <label for="phone">Phone*</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    placeholder="+885 1254 5211 552"
-                  />
+                  <input type="text" name="phone" placeholder="+885 1254 5211 552" required />
                 </div>
                 <div class="ud-form-group">
                   <label for="message">Message*</label>
-                  <textarea
-                    name="message"
-                    rows="1"
-                    placeholder="type your message here"
-                  ></textarea>
+                  <textarea name="message" rows="1" placeholder="type your message here" required></textarea>
                 </div>
                 <div class="ud-form-group mb-0">
-                  <button type="submit" class="ud-main-btn">
-                    Send Message
-                  </button>
+                  <button type="submit" class="ud-main-btn">Send Message</button>
                 </div>
+                <div id="formResponse" style="display:none; color:green;">Message sent successfully!</div>
               </form>
             </div>
           </div>
@@ -617,13 +592,10 @@
             <div class="col-md-8">
               <ul class="ud-footer-bottom-left">
                 <li>
-                  <a href="javascript:void(0)">Privacy policy</a>
+                  <a href="/blog-details.html">Privacy policy</a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)">Support policy</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Terms of service</a>
+                  <a href="/blogterm.html">Terms of service</a>
                 </li>
               </ul>
             </div>
@@ -646,51 +618,53 @@
     <!-- ====== Back To Top End ====== -->
 
     <!-- ====== All Javascript Files ====== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      // ==== for menu scroll
-      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+    <!-- ====== All Javascript Files ====== -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact-form.js"></script> <!-- Add this line -->
+<script>
+  // ==== for menu scroll
+  const pageLink = document.querySelectorAll(".ud-menu-scroll");
 
-      pageLink.forEach((elem) => {
-        elem.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.querySelector(elem.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            offsetTop: 1 - 60,
-          });
-        });
+  pageLink.forEach((elem) => {
+    elem.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector(elem.getAttribute("href")).scrollIntoView({
+        behavior: "smooth",
+        offsetTop: 1 - 60,
       });
+    });
+  });
 
-      // section menu active
-      function onScroll(event) {
-        const sections = document.querySelectorAll(".ud-menu-scroll");
-        const scrollPos =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+  // section menu active
+  function onScroll(event) {
+    const sections = document.querySelectorAll(".ud-menu-scroll");
+    const scrollPos =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop;
 
-        for (let i = 0; i < sections.length; i++) {
-          const currLink = sections[i];
-          const val = currLink.getAttribute("href");
-          const refElement = document.querySelector(val);
-          const scrollTopMinus = scrollPos + 73;
-          if (
-            refElement.offsetTop <= scrollTopMinus &&
-            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-          ) {
-            document
-              .querySelector(".ud-menu-scroll")
-              .classList.remove("active");
-            currLink.classList.add("active");
-          } else {
-            currLink.classList.remove("active");
-          }
-        }
+    for (let i = 0; i < sections.length; i++) {
+      const currLink = sections[i];
+      const val = currLink.getAttribute("href");
+      const refElement = document.querySelector(val);
+      const scrollTopMinus = scrollPos + 73;
+      if (
+        refElement.offsetTop <= scrollTopMinus &&
+        refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+      ) {
+        document
+          .querySelector(".ud-menu-scroll")
+          .classList.remove("active");
+        currLink.classList.add("active");
+      } else {
+        currLink.classList.remove("active");
       }
+    }
+  }
 
-      window.document.addEventListener("scroll", onScroll);
-    </script>
+  window.document.addEventListener("scroll", onScroll);
+</script>
   </body>
 </html>
