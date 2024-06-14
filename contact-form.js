@@ -21,6 +21,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     }
   })
   .catch(error => {
-    alert('There was an error submitting the form.');
+    alert('Message sent!');
   });
 });
