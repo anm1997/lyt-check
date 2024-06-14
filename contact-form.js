@@ -7,7 +7,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     var json = JSON.stringify(object);
   
     fetch('https://hooks.zapier.com/hooks/catch/19161262/2oaxlqn/', { // replace 'your_webhook_url' with the actual webhook URL from Zapier
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       },
